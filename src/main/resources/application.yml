@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: local
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size : 50MB
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 50
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: false
+  flyway:
+    password: ${spring.datasource.password}
+    user: ${spring.datasource.username}
+    placeholders:
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+    locations: classpath:db/migration
+    url: ${spring.datasource.url}
+
+server:
+  error:
+    include-message: always
+    include-exception: true
+    include-binding-errors: always
+

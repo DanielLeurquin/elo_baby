@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/elobaby
+  jpa:
+    show-sql: 'true'
+
+# Logs
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+server:
+  servlet:
+    context-path: /elobaby
+  port: 8080
+
+cors:
+  allowed-origin:
+  insecure: false
+  postman-testing : true
+
+
+jwt:
+  secret: ykLx2aidrEhX6Jx58Je/Jg8/F7l/Jx2/RBosVlhgcVV6cZgIYHvLIzRTl4vI0SUs
+  refresh-secret: x0OStMBKJVX+Fk3yvL9HIqNIpAoqyIYpbvAjRuQTw5xlJbMtSsDmy4xI63xsiB3f
+  token-duration: 1800               # default: 30 min
+  refresh-token-duration: 2592000      # default: 1 month
+  issuer: elobaby

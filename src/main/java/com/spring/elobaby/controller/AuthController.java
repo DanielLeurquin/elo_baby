@@ -3,6 +3,8 @@ package com.spring.elobaby.controller;
 import com.spring.elobaby.config.jwt.TokenSet;
 
 import com.spring.elobaby.dal.model.dto.RefreshTokenDto;
+import com.spring.elobaby.dal.model.dto.UserCreationDto;
+import com.spring.elobaby.dal.model.dto.UserDto;
 import com.spring.elobaby.exceptions.http.HttpUnauthorizedException;
 
 import com.spring.elobaby.service.SecurityService;
@@ -22,9 +24,13 @@ public class AuthController {
     SecurityService securityService;
 
     @PostMapping()
-    public void auth(){
-        //issue tokenSet on auth validation;
-        return;
+    public TokenSet auth(@RequestBody UserCreationDto dto) {
+        return userService.login(dto);
+    }
+
+    @PostMapping("/register")
+    public TokenSet register(@RequestBody UserCreationDto dto) {
+        return userService.createUserIfNotExistAndLog(dto);
     }
 
     @PostMapping("/refresh")

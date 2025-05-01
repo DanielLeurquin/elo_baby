@@ -7,5 +7,10 @@ import lombok.Data;
 @Data
 public class UserDto {
     Long id;
+
+    String username;
+
+    Integer elo;
+
     Role role;
 }

@@ -8,6 +8,7 @@ import com.spring.elobaby.service.SecurityService;
 import com.spring.elobaby.service.UserService;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +21,18 @@ public class UserController {
     UserService userService;
 
     @Autowired
-    SecurityService service;
+    SecurityService securityService;
 
-    @GetMapping()
-    @RolesAllowed({Roles.ADMIN})
-    public List<UserDto> findAll(){
-        return userService.findAll();
+    @RolesAllowed({Roles.USER})
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> getActiveUser(){
+        return ResponseEntity.ok(userService.getActiveStudent());
+    }
+
+    @RolesAllowed({Roles.USER})
+    @GetMapping("/all")
+    public ResponseEntity<List<UserDto>> getAllUsers(){
+        return ResponseEntity.ok(userService.findAll());
     }
 
 

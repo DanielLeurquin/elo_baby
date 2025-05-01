@@ -126,15 +126,13 @@ public class JwtTokenUtil {
   private String generateToken(TokenPayload tokenPayload) {
     Calendar calendar = Calendar.getInstance(locale); // gets a calendar using the default time zone and locale.
     calendar.add(Calendar.SECOND, tokenDuration);
-    Map<String,String> payload = new HashMap<>();
-    payload.put("id",tokenPayload.getId().toString());
-    payload.put("role",tokenPayload.getRole());
 
     return JWT.create()
       .withIssuer(issuer)
       .withIssuedAt(Calendar.getInstance(locale).getTime())
+      .withClaim("id", tokenPayload.getId())
+      .withClaim("role", tokenPayload.getRole())
       .withExpiresAt(calendar.getTime())
-      .withPayload(payload)
       .sign(standardAlgorithm);
 
   }
@@ -142,13 +140,12 @@ public class JwtTokenUtil {
   private String generateRefreshToken(TokenPayload tokenPayload) {
     Calendar calendar = Calendar.getInstance(locale); // gets a calendar using the default time zone and locale.
     calendar.add(Calendar.SECOND, refreshTokenDuration);
-    Map<String,String> payload = new HashMap<>();
-    payload.put("id",tokenPayload.getId().toString());
+
     return JWT.create()
       .withIssuer(issuer)
       .withIssuedAt(Calendar.getInstance(locale).getTime())
       .withExpiresAt(calendar.getTime())
-      .withPayload(payload)
+      .withClaim("id", tokenPayload.getId())
       .sign(refreshAlgorithm);
 
 

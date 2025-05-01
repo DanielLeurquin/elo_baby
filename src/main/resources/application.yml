@@ -13,7 +13,7 @@ spring:
           batch_size: 50
         temp:
           use_jdbc_metadata_defaults: false
-    open-in-view: false
+    open-in-view: true
   flyway:
     password: ${spring.datasource.password}
     user: ${spring.datasource.username}

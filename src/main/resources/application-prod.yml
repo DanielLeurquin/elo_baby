@@ -30,8 +30,8 @@ cors:
 
 
 jwt:
-  secret: ykLx2aidrEhX6Jx58Je/Jg8/F7l/Jx2/RBosVlhgcVV6cZgIYHvLIzRTl4vI0SUs
-  refresh-secret: x0OStMBKJVX+Fk3yvL9HIqNIpAoqyIYpbvAjRuQTw5xlJbMtSsDmy4xI63xsiB3f
+  secret: ${JWT_SECRET}
+  refresh-secret: ${JWT_REFRESH_SECRET}
   token-duration: 1800               # default: 30 min
   refresh-token-duration: 2592000      # default: 1 month
   issuer: elobaby

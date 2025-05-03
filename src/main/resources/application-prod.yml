@@ -24,7 +24,7 @@ server:
   port: 8080
 
 cors:
-  allowed-origin:
+  allowed-origin: https://elo-baby.leurquin.org
   insecure: false
   postman-testing : false
 

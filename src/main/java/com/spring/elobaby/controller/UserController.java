@@ -35,5 +35,9 @@ public class UserController {
         return ResponseEntity.ok(userService.findAll());
     }
 
-
+    @RolesAllowed({Roles.USER})
+    @GetMapping("/{username}")
+    public ResponseEntity<UserDto> getUserByUsername(@PathVariable String username){
+        return ResponseEntity.ok(userService.findByUsername(username));
+    }
 }

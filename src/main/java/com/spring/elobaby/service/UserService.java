@@ -82,4 +82,12 @@ public class UserService {
     }
 
 
+    public UserDto findByUsername(String username) {
+        var user = userRepository
+                .findByUsername(username)
+                .map(UserMapper.instance()::convertToDto)
+                .orElseThrow(() -> new BusinessException("Unable to find the active user"));
+
+        return user;
+    }
 }

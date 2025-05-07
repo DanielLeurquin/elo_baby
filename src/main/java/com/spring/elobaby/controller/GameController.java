@@ -36,5 +36,12 @@ public class GameController {
         return ResponseEntity.ok(gameService.getUserGames(id));
     }
 
+    @RolesAllowed({Roles.USER})
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGame(@PathVariable Long id) {
+        gameService.deleteGame(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

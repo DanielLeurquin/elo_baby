@@ -177,4 +177,12 @@ public class PlayerScoreService {
     }
 
 
+    public void deletePlayerScore(Long id) {
+        var playerScore = playerScoreRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(
+                        "Player score not found"
+                ));
+        playerScore.getPlayer().setElo(playerScore.getStartElo());
+        playerScoreRepository.delete(playerScore);
+    }
 }

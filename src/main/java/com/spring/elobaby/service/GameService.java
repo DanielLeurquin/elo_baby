@@ -103,4 +103,13 @@ public class GameService {
                 .map(GameMapper.instance()::convertToDto)
                 .toList();
     }
+
+    public void deleteGame(Long id) {
+        var game = gameRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("Game not found"));
+        for (PlayerScore ps : game.getPlayerScores()) {
+            playerScoreService.deletePlayerScore(ps.getId());
+        }
+        gameRepository.delete(game);
+    }
 }

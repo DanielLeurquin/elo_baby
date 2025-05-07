@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public TokenSet createUserIfNotExistAndLog(UserCreationDto dto) {
-        var userOpt = userRepository.findByUsername(dto.getUsername());
+        var userOpt = userRepository.findByUsername(dto.getUsername().strip());
         if (userOpt.isPresent()) {
             throw new BusinessException("Cet utilisateur existe déjà");
         }

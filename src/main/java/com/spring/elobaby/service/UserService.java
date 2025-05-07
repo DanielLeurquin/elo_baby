@@ -43,7 +43,7 @@ public class UserService {
 
         User user = new User();
         user.setUsername(dto.getUsername());
-        user.setElo(100);
+        user.setElo(500);
         user.setRole(Role.ROLE_USER);
         user = userRepository.save(user);
         return securityService.logUser(user);
